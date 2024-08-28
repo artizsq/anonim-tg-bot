@@ -7,7 +7,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 
 async def main():
-    bot = Bot(token="")
+    bot = Bot(token="suka")
     dp = Dispatcher()
 
 
