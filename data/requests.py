@@ -37,6 +37,16 @@ async def get_messages(tg_id):
         get = await session.scalar(select(User.message_get).where(User.tg_id == tg_id))
 
         return count, get
+    
+async def add_messages_count(sender_id, receiver_id):
+    async with async_session() as session:
+        sender = await session.scalar(select(User).where(User.tg_id == sender_id))
+        sender.message_count += 1
+
+        receiver = await session.scalar(select(User).where(User.tg_id == receiver_id))
+        receiver.message_get += 1
+        
+        await session.commit()
 
 
 
