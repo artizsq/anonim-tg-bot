@@ -1,3 +1,8 @@
+"""
+Файл с главной функцией запуска бота
+
+"""
+
 from aiogram import Bot, Dispatcher
 import asyncio
 from data.models import async_main
