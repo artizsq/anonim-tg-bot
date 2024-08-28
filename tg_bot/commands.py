@@ -1,4 +1,11 @@
-from aiogram import Router, types
+"""
+Файл со всеми командами бота
+
+
+"""
+
+
+from aiogram import Bot, Router, types
 from aiogram.filters import Command
 from data.requests import get_code, get_messages, set_user, get_user
 from aiogram.fsm.context import FSMContext
@@ -42,3 +49,10 @@ async def profile_command(message: types.Message):
 Получено сообщений: {get}
 Отправлено сообщений: {count}
 """, parse_mode="Markdown")
+    
+
+@rt.message(Command("secret"))
+async def secret_command(message: types.Message, bot: Bot):
+    # sticker = types.InputFile("CAACAgIAAxkBAAELPwtmzwSHlG6STBmCM76SA0G8f-kzYQACrhsAApOEgUormxCo9FCQsTUE")
+    await bot.send_sticker(chat_id=message.chat.id,
+                           sticker="CAACAgIAAxkBAAEIDadmzwbpYOhQIQFmPS31IiX6giNr8wACrhsAApOEgUormxCo9FCQsTUE")
