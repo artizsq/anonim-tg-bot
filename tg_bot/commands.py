@@ -36,7 +36,7 @@ async def start_command(message: types.Message, state: FSMContext):
 
 @rt.message(Command("help"))
 async def gelp_command(message: types.Message):
-    await message.answer("Помощи не будет :)")
+    await message.answer("Помощь будет")
 
 
 @rt.message(Command("profile"))
