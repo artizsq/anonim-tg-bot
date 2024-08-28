@@ -2,7 +2,6 @@
 Файл со всеми командами бота
 """
 
-
 from aiogram import Bot, Router, types
 from aiogram.filters import Command
 from data.requests import get_code, get_messages, set_user, get_user
