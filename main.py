@@ -7,7 +7,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 
 async def main():
-    bot = Bot(token="тимур лох")
+    bot = Bot(token="тимур лох рил не шутка 100% хуй даю")
     dp = Dispatcher()
 
 
