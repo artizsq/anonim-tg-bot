@@ -1,5 +1,4 @@
 import os
-from configparser import ConfigParser
 
 from aiogram import Bot
 from .models import User, async_session
