@@ -27,7 +27,7 @@ async def start_command(message: types.Message, state: FSMContext):
 
         user_id = await get_user(code)
         await state.update_data({"user": user_id})
-        await message.answer("ВЫ отправите код пользователю: " + str(user_id) + "\nДля этого отправьте мне сообщение: ")
+        await message.answer("ВЫ отправите код пользователю: " + str(user_id) + "\nДля этого отправьте мне: ")
         await state.set_state(Send.code)
     else:
         await message.answer(f"Код доступа: {await get_code(message.from_user.id)}")
