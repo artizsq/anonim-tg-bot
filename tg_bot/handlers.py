@@ -15,7 +15,7 @@ async def send_code(message: types.Message, state: FSMContext, bot: Bot):
     base = "✉️ Пришло новое сообщение!\n\n"
     try:
         await bot.send_message(user_id, text=base + message.text)
-        await message.answer(f"Сообщение отпрhgfhавлено!")
+        await message.answer(f"Сообщение отправлено!")
     except Exception as e:
         await message.answer("Произошла ошибка: " + str(e))
 
