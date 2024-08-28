@@ -1,7 +1,5 @@
 """
 Файл со всеми командами бота
-
-
 """
 
 
@@ -10,6 +8,8 @@ from aiogram.filters import Command
 from data.requests import get_code, get_messages, set_user, get_user
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
+
+from .key import cancel
 
 
 class Send(StatesGroup):
@@ -27,7 +27,7 @@ async def start_command(message: types.Message, state: FSMContext):
 
         user_id = await get_user(code)
         await state.update_data({"user": user_id})
-        await message.answer("ВЫ отправите код пользователю: " + str(user_id) + "\nДля этого отправьте мне сообщение: ")
+        await message.answer("👉 Введите сообщение, которое хотите отправить.\n\n🤖 Бот поддерживает следующие типы сообщений: `текст, фото, видео, документы, GIF, стикер, голосовые сообщения, видеосообщения.`", reply_markup=cancel(), parse_mode="Markdown")
         await state.set_state(Send.code)
     else:
         await message.answer(f"Код доступа: {await get_code(message.from_user.id)}")
@@ -40,14 +40,23 @@ async def gelp_command(message: types.Message):
 
 
 @rt.message(Command("profile"))
-async def profile_command(message: types.Message):
+async def profile_command(message: types.Message, bot: Bot):
     get, count = await get_messages(message.from_user.id)
+    _bot = await bot.get_me()
     await message.answer(f"""
-➖ Ваш профиль ➖
+➖➖➖➖➖➖➖➖➖➖➖
+*Информация о вас:*
+ 
+👤 Username: @{message.from_user.username}
+ℹ️ Id: {message.from_user.id}
 
-Ссылка для друзей: `https://t.me/bebra_tests_bot?start={await get_code(message.from_user.id)}`
-Получено сообщений: {get}
-Отправлено сообщений: {count}
+*Сообщения:*       
+📥 Кол-во полученных: {get}
+📤 Кол-во отправленных: {count}
+                         
+🔗 Твоя ссылка: 
+👉`https://t.me/{_bot.username}?start={await get_code(message.from_user.id)}`
+➖➖➖➖➖➖➖➖➖➖➖
 """, parse_mode="Markdown")
     
 
