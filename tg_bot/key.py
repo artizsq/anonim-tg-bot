@@ -1,3 +1,7 @@
+"""
+Файл с функциями для создания клавиатур
+"""
+
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from aiogram import types
 
