@@ -1,3 +1,8 @@
+"""
+Рустам используй `git pull`
+
+"""
+
 from aiogram import Bot, Dispatcher
 import asyncio
 from data.models import async_main
