@@ -24,7 +24,7 @@ async def send_code(message: types.Message, state: FSMContext, bot: Bot):
         
         await state.clear()
     except Exception as e:
-        await message.answer("⚠️❌ Произошла ошибка: " + str(e) + "\n\nПопробуйте ещё раз или напишите администратору (@ArtizSQ или @RegaTG).")
+        await message.answer("⚠️❌ Произошла ошибка: " + str(e) + "\n\nПопробуйте ещё раз или напишите администратору (@ArtizSQ или @RegaaTG).")
 
 
 
