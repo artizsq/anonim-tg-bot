@@ -128,7 +128,7 @@ async def send_voice(message: types.Message, state: FSMContext, bot: Bot):
 
         await add_messages_count(sender_id=message.from_user.id, receiver_id=user_id)
 
-        
+
         await bot.send_voice(user_id, voice=message.voice.file_id, caption=text, parse_mode="Markdown")
         await message.answer(f"✅ Сообщение отправлено!", reply_markup=send_again(user_id=user_id))
         
@@ -136,6 +136,8 @@ async def send_voice(message: types.Message, state: FSMContext, bot: Bot):
 
     except Exception as e:
         await message.answer("⚠️❌ Произошла ошибка: `" + str(e) + "`\n\nПопробуйте ещё раз или напишите администратору (@ArtizSQ или @RegaaTG).", parse_mode="Markdown", reply_markup=cancel())
+
+
 
 
 
