@@ -10,7 +10,7 @@ def cancel() -> InlineKeyboardBuilder:
     kb.add(types.InlineKeyboardButton(text="Отмена", callback_data="cancel"))
     return kb.as_markup()
 
-def send_again() -> InlineKeyboardBuilder:
+def send_again(user_id) -> InlineKeyboardBuilder:
     kb = InlineKeyboardBuilder()
-    kb.add(types.InlineKeyboardButton(text="Отправить ещё раз", callback_data="send_again"))
+    kb.add(types.InlineKeyboardButton(text="Отправить ещё раз", callback_data="again_" + str(user_id)))
     return kb.as_markup()
