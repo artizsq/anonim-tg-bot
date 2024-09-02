@@ -186,6 +186,36 @@ async def send_sticker(message: types.Message, state: FSMContext, bot: Bot):
         await message.answer("⚠️❌ Произошла ошибка: `" + str(e) + "`\n\nПопробуйте ещё раз или напишите администратору (@ArtizSQ или @RegaaTG).", parse_mode="Markdown", reply_markup=cancel())
         
 
+@rt.message(F.poll, Send.code)
+async def send_poll(message: types.Message, state: FSMContext, bot: Bot):
+    code = await state.get_data()
+    user_id = code["user"]
+
+    base = "*✉️ Пришло новое сообщение!*\n\n"
+
+    question = message.poll.question
+    options_obj = message.poll.options
+
+    options = []
+    for option in options_obj:
+        options.append(option.text)
+
+    try:
+        
+
+        await add_messages_count(sender_id=message.from_user.id, receiver_id=user_id)
+
+        await bot.send_message(user_id, text=base, parse_mode="Markdown")
+        await bot.send_poll(user_id, question=str(question), options=options, is_anonymous=message.poll.is_anonymous, type=message.poll.type, allows_multiple_answers=message.poll.allows_multiple_answers)
+        await message.answer(f"✅ Сообщение отправлено!", reply_markup=send_again(user_id=user_id))
+        
+        await state.clear()
+
+    except Exception as e:
+        await message.answer("⚠️❌ Произошла ошибка: `" + str(e) + "`\n\nПопробуйте ещё раз или напишите администратору (@ArtizSQ или @RegaaTG).", parse_mode="Markdown", reply_markup=cancel())
+
+
+
 
 
 @rt.callback_query(F.data == "cancel")
